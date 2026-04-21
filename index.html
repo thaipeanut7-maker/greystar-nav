@@ -8,30 +8,25 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;background:#000;color:#fff;user-select:none;}
-
 .wallpaper{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,#1a2a6c,transparent 60%),radial-gradient(ellipse 60% 70% at 80% 20%,#0a4a7c,transparent 55%),radial-gradient(ellipse 70% 50% at 50% 80%,#0d1f3c,transparent 60%),linear-gradient(160deg,#0f0c29 0%,#0a1628 40%,#0d2137 70%,#0f1c2d 100%);}
-
 .screen{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;}
-
-/* Status bar */
 .status-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 4px;flex-shrink:0;}
 .status-time{font-size:17px;font-weight:700;}
-
-/* Title */
+.sync-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:background .4s;}
+.sync-dot.idle{background:rgba(255,255,255,0.18);}
+.sync-dot.saving{background:#FF9F0A;animation:pulse .8s infinite;}
+.sync-dot.saved{background:#30D158;}
+.sync-dot.error{background:#FF453A;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .home-title{padding:2px 22px 10px;font-size:34px;font-weight:700;letter-spacing:-0.5px;flex-shrink:0;}
 .home-sub{font-size:13px;font-weight:400;opacity:0.45;margin-top:1px;}
-
-/* Search */
 .search-bar{margin:0 18px 14px;position:relative;flex-shrink:0;}
 .search-bar input{width:100%;height:38px;background:rgba(255,255,255,0.13);border:none;border-radius:12px;padding:0 14px 0 36px;font-family:inherit;font-size:15px;color:rgba(255,255,255,0.9);outline:none;transition:background .2s;}
 .search-bar input::placeholder{color:rgba(255,255,255,0.38);}
 .search-bar input:focus{background:rgba(255,255,255,0.19);}
 .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;opacity:0.4;pointer-events:none;}
-
-/* Filter strip */
 .filter-strip{display:flex;gap:12px;padding:0 18px 14px;flex-shrink:0;overflow-x:auto;scrollbar-width:none;}
 .filter-strip::-webkit-scrollbar{display:none;}
-
 .f-app{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex-shrink:0;}
 .f-app:active .f-icon{transform:scale(0.87);opacity:0.7;}
 .f-icon{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:27px;transition:transform .12s,opacity .12s;position:relative;box-shadow:0 4px 14px rgba(0,0,0,0.4);}
@@ -39,17 +34,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 .f-icon.acct{background:linear-gradient(145deg,#2e8b57,#34C759);}
 .f-icon.client{background:linear-gradient(145deg,#7a3baf,#AF52DE);}
 .f-icon.clear{background:linear-gradient(145deg,#444,#636366);}
-
 .f-badge{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;background:#FF3B30;border-radius:9px;font-size:11px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;border:2px solid #000;opacity:0;transform:scale(0);transition:opacity .15s,transform .15s;}
 .f-badge.on{opacity:1;transform:scale(1);}
-
 .f-label{font-size:11px;font-weight:500;color:rgba(255,255,255,0.65);text-align:center;max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .f-label.on{color:#fff;font-weight:600;}
-
-/* Count */
 .count{padding:0 22px 8px;font-size:13px;color:rgba(255,255,255,0.38);flex-shrink:0;}
-
-/* Grid */
 .grid-wrap{flex:1;overflow-y:auto;overflow-x:hidden;padding:0 14px 30px;scrollbar-width:none;}
 .grid-wrap::-webkit-scrollbar{display:none;}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 4px;}
@@ -58,40 +47,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 @media(min-width:800px){.grid{grid-template-columns:repeat(7,1fr);}}
 @media(min-width:960px){.grid{grid-template-columns:repeat(8,1fr);}}
 @media(min-width:1120px){.grid{grid-template-columns:repeat(9,1fr);}}
-
-/* App icon */
-.app{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:6px 2px;border-radius:18px;transition:background .15s;}
+.app{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:6px 2px;border-radius:18px;transition:background .15s;animation:fadeUp .28s ease both;}
 .app:active{background:rgba(255,255,255,0.09);}
 .app-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:0.2px;color:white;text-shadow:0 1px 2px rgba(0,0,0,0.4);box-shadow:0 3px 10px rgba(0,0,0,0.4),0 0 0 0.5px rgba(255,255,255,0.07) inset;transition:transform .12s;position:relative;overflow:hidden;flex-shrink:0;font-family:'SF Mono','Menlo','Cascadia Code',monospace;text-transform:lowercase;line-height:1.1;text-align:center;padding:2px;}
 .app-icon::after{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,0.16),transparent);pointer-events:none;}
 .app:active .app-icon{transform:scale(0.86);}
 .app-name{font-size:11px;font-weight:500;color:rgba(255,255,255,0.8);text-align:center;line-height:1.3;max-width:72px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-
-.grid-section-label{grid-column:1/-1;font-size:13px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;padding:14px 4px 6px;}
-
 .empty-grid{grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);}
 .empty-grid div:first-child{font-size:44px;margin-bottom:10px;}
-
-/* Sheet overlay */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .overlay{position:fixed;inset:0;z-index:50;background:transparent;pointer-events:none;transition:background .28s;}
 .overlay.open{background:rgba(0,0,0,0.55);pointer-events:auto;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);}
-
 .sheet{position:absolute;bottom:0;left:0;right:0;background:rgba(26,26,32,0.96);backdrop-filter:saturate(200%) blur(30px);-webkit-backdrop-filter:saturate(200%) blur(30px);border-radius:22px 22px 0 0;padding:10px 20px 48px;transform:translateY(100%);transition:transform .36s cubic-bezier(0.32,0.72,0,1);max-height:88vh;overflow-y:auto;scrollbar-width:none;}
 .sheet::-webkit-scrollbar{display:none;}
 .overlay.open .sheet{transform:translateY(0);}
 .sheet-handle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,0.2);margin:0 auto 18px;}
-
-/* Property sheet */
-.ps-header{margin-bottom:20px;}
 .ps-name{font-size:26px;font-weight:700;letter-spacing:-0.4px;line-height:1.2;}
-.ps-code{font-size:13px;color:rgba(255,255,255,0.4);font-family:'SF Mono','Menlo',monospace;margin-top:4px;letter-spacing:0.3px;}
-.ps-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.ps-code{font-size:13px;color:rgba(255,255,255,0.4);font-family:'SF Mono','Menlo',monospace;margin-top:4px;}
+.ps-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:20px;}
 .chip{font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;}
 .chip-client{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.75);}
 .chip-acct{background:rgba(175,82,222,0.18);color:#bf7af0;}
 .chip-role-owner{background:rgba(52,199,89,0.15);color:#4cd964;}
 .chip-role-member{background:rgba(88,86,214,0.15);color:#7b79f2;}
-
 .folders-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
 .folder-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .folder-btn{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.06);border-radius:16px;padding:15px;text-decoration:none;color:white;transition:background .15s,transform .12s;border:none;cursor:pointer;font-family:inherit;}
@@ -105,21 +83,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 .fi.gen{background:linear-gradient(145deg,#7a3baf,#AF52DE);}
 .fb-name{font-size:15px;font-weight:600;}
 .fb-sub{font-size:12px;color:rgba(255,255,255,0.42);margin-top:1px;}
-
-/* Property Action Buttons */
 .ps-actions{margin-top:25px;display:flex;gap:8px;}
-.btn-edit{flex:1;height:48px;background:rgba(255,255,255,0.1);border:none;border-radius:14px;color:white;font-weight:600;cursor:pointer;}
-.btn-delete{flex:1;height:48px;background:rgba(255,59,48,0.2);border:1px solid rgba(255,59,48,0.3);border-radius:14px;color:#FF453A;font-weight:600;cursor:pointer;}
-.btn-edit:active, .btn-delete:active{opacity:0.6;}
-
-/* Edit Form */
+.btn-edit{flex:1;height:48px;background:rgba(255,255,255,0.1);border:none;border-radius:14px;color:white;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-delete{flex:1;height:48px;background:rgba(255,59,48,0.2);border:1px solid rgba(255,59,48,0.3);border-radius:14px;color:#FF453A;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-edit:active,.btn-delete:active{opacity:0.6;}
 .edit-form{display:flex;flex-direction:column;gap:15px;}
 .edit-group{display:flex;flex-direction:column;gap:6px;}
 .edit-group label{font-size:12px;color:rgba(255,255,255,0.4);margin-left:4px;}
-.edit-group input{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px;color:white;font-size:16px;outline:none;}
+.edit-group input{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px;color:white;font-size:16px;outline:none;font-family:inherit;}
 .edit-group input:focus{border-color:rgba(255,255,255,0.3);}
-
-/* Filter sheet */
 .fs-title{font-size:22px;font-weight:700;margin-bottom:16px;}
 .fo-list{display:flex;flex-direction:column;gap:1px;}
 .fo{display:flex;justify-content:space-between;align-items:center;padding:14px 2px;border-bottom:.5px solid rgba(255,255,255,0.07);cursor:pointer;font-size:16px;transition:opacity .15s;}
@@ -130,8 +102,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 .fo.sel .fo-check::after{content:'✓';font-size:13px;font-weight:700;color:white;}
 .done-btn{width:100%;height:52px;margin-top:18px;background:#007AFF;border:none;border-radius:14px;color:white;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;transition:opacity .15s;}
 .done-btn:active{opacity:0.75;}
-
-/* Period sheet */
 .year-row{display:flex;gap:8px;margin-bottom:12px;}
 .yr-btn{flex:1;height:42px;background:rgba(255,255,255,0.07);border:none;border-radius:12px;color:rgba(255,255,255,0.65);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:all .15s;}
 .yr-btn.sel{background:#007AFF;color:white;}
@@ -140,58 +110,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 .mo-btn{background:rgba(255,255,255,0.07);border:none;border-radius:12px;padding:11px 6px;color:rgba(255,255,255,0.7);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;text-align:center;}
 .mo-btn.sel{background:#007AFF;color:white;}
 .mo-btn:active{opacity:0.7;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.app{animation:fadeUp .28s ease both;}
-
-/* CSV upload area */
 .csv-zone{margin-top:12px;border:2px dashed rgba(255,255,255,0.15);border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;}
 .csv-zone:hover,.csv-zone.drag{border-color:rgba(0,122,255,0.5);background:rgba(0,122,255,0.06);}
 .csv-zone-label{font-size:14px;color:rgba(255,255,255,0.5);margin-top:6px;}
 .csv-zone input{display:none;}
-.csv-preview{margin-top:14px;max-height:200px;overflow-y:auto;scrollbar-width:none;font-size:13px;color:rgba(255,255,255,0.7);text-align:left;}
+.csv-preview{margin-top:14px;max-height:200px;overflow-y:auto;scrollbar-width:none;font-size:13px;color:rgba(255,255,255,0.7);}
 .csv-preview::-webkit-scrollbar{display:none;}
 .csv-row{display:flex;justify-content:space-between;padding:6px 4px;border-bottom:0.5px solid rgba(255,255,255,0.06);}
 .csv-row span:first-child{font-weight:600;color:white;}
-
-/* Color swatch rows */
 .color-list{display:flex;flex-direction:column;gap:1px;margin-top:8px;}
 .color-row{display:flex;align-items:center;gap:10px;padding:12px 4px;border-bottom:0.5px solid rgba(255,255,255,0.07);cursor:pointer;transition:opacity .15s;}
 .color-row:active{opacity:0.6;}
 .color-row:last-child{border-bottom:none;}
 .color-swatch{width:32px;height:32px;border-radius:8px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,0.3);}
 .color-name{font-size:15px;flex:1;color:rgba(255,255,255,0.85);}
-.color-count{font-size:12px;color:rgba(255,255,255,0.35);margin-right:2px;}
-.color-edit-row{display:flex;gap:8px;align-items:center;margin-top:6px;}
+.color-count{font-size:12px;color:rgba(255,255,255,0.35);}
 .color-input{flex:1;height:40px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0 12px;color:white;font-size:14px;font-family:inherit;outline:none;}
 .color-input:focus{border-color:rgba(255,255,255,0.3);}
 .color-picker-wrap{width:40px;height:40px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);flex-shrink:0;cursor:pointer;}
 .color-picker-wrap input[type=color]{width:56px;height:56px;border:none;margin:-8px;cursor:pointer;}
-
-/* Add button */
 .add-btn-float{position:fixed;bottom:30px;right:24px;z-index:40;width:56px;height:56px;border-radius:28px;background:#007AFF;border:none;color:white;font-size:28px;font-weight:300;box-shadow:0 4px 16px rgba(0,122,255,0.45);cursor:pointer;transition:transform .12s,box-shadow .15s;display:flex;align-items:center;justify-content:center;}
 .add-btn-float:active{transform:scale(0.9);}
 .add-btn-float:hover{box-shadow:0 6px 24px rgba(0,122,255,0.55);}
-
-/* Tab bar in add sheet */
 .tab-bar{display:flex;background:rgba(255,255,255,0.08);border-radius:10px;padding:2px;margin-bottom:18px;}
 .tab-btn{flex:1;height:34px;border:none;border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;}
 .tab-btn.active{background:rgba(255,255,255,0.15);color:white;}
-
-/* Reset btn */
 .reset-btn{width:100%;height:44px;margin-top:10px;background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.2);border-radius:12px;color:#FF453A;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;}
 .reset-btn:active{opacity:0.6;}
-
-/* Sync dot */
-.sync-dot{width:8px;height:8px;border-radius:50%;transition:background .4s;}
-.sync-dot.idle{background:rgba(255,255,255,0.18);}
-.sync-dot.saving{background:#FF9F0A;animation:pulse .8s infinite;}
-.sync-dot.saved{background:#30D158;}
-.sync-dot.error{background:#FF453A;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* Hide animation */
-.app.hiding{opacity:0;transform:scale(0.7);transition:opacity .25s,transform .25s;pointer-events:none;}
 </style>
 </head>
 <body>
@@ -199,7 +144,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 <div class="screen">
   <div class="status-bar">
     <div class="status-time" id="clock">9:41</div>
-    <div class="sync-dot idle" id="syncDot" title="Synced" onclick="cloudLoad()" style="cursor:pointer"></div>
+    <div class="sync-dot idle" id="syncDot" title="Synced" onclick="cloudLoad()"></div>
   </div>
   <div class="home-title">Greystar<div class="home-sub">Property Navigator</div></div>
   <div class="search-bar">
@@ -212,11 +157,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
       <div class="f-label on" id="periodLabel">Period</div>
     </div>
     <div class="f-app" onclick="openFilterSheet('accountant')">
-      <div class="f-icon acct">👤<div class="f-badge" id="acctBadge">1</div></div>
+      <div class="f-icon acct">👤<div class="f-badge" id="acctBadge"></div></div>
       <div class="f-label" id="acctLabel">Accountant</div>
     </div>
     <div class="f-app" onclick="openFilterSheet('client')">
-      <div class="f-icon client">🏢<div class="f-badge" id="clientBadge">1</div></div>
+      <div class="f-icon client">🏢<div class="f-badge" id="clientBadge"></div></div>
       <div class="f-label" id="clientLabel">Client</div>
     </div>
     <div class="f-app" onclick="clearAll()">
@@ -228,11 +173,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
       <div class="f-label">Colors</div>
     </div>
     <div class="f-app" onclick="openHiddenSheet()">
-      <div class="f-icon" style="background:linear-gradient(145deg,#3a3a3c,#636366)">👁️<div class="f-badge" id="hiddenBadge">0</div></div>
+      <div class="f-icon" style="background:linear-gradient(145deg,#3a3a3c,#636366)">👁️<div class="f-badge" id="hiddenBadge"></div></div>
       <div class="f-label" id="hiddenLabel">Hidden</div>
     </div>
   </div>
-  <div class="count" id="count">69 properties</div>
+  <div class="count" id="count"></div>
   <div class="grid-wrap"><div class="grid" id="grid"></div></div>
 </div>
 
@@ -246,7 +191,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Ne
 </div>
 
 <script>
-const DEFAULT_CLIENT_COLORS={
+// ── 1. CONSTANTS ─────────────────────────────────────────────────────
+var DEFAULT_CLIENT_COLORS = {
   "TruAmerica Multifamily":"#5E5CE6",
   "TA Realty":"#30D158",
   "Calfox":"#0A84FF",
@@ -254,22 +200,11 @@ const DEFAULT_CLIENT_COLORS={
   "Slate Real Estate Partners":"#5AC8FA",
   "Benedict Canyon Equities, Inc.":"#FF453A",
   "Lonestar Development Partners":"#FF6961",
-  "Shorenstein Properties LLC":"#AC8E68",
+  "Shorenstein Properties LLC":"#AC8E68"
 };
-const DEFAULT_COLOR="#636366";
+var DEFAULT_COLOR = "#636366";
 
-// Load saved colors or use defaults — moved to state block below
-function grad(client){
-  const hex = CLIENT_COLORS_HEX[client];
-  if(!hex) return `linear-gradient(145deg,#3a3a3c,${DEFAULT_COLOR})`;
-  // darken hex for gradient start
-  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-  const dk=`#${Math.max(0,r-60).toString(16).padStart(2,'0')}${Math.max(0,g-60).toString(16).padStart(2,'0')}${Math.max(0,b-60).toString(16).padStart(2,'0')}`;
-  return `linear-gradient(145deg,${dk},${hex})`;
-}
-
-// Initial Data
-const INITIAL_PROPERTIES=[
+var INITIAL_PROPERTIES = [
   {name:"601 PAX",slug:"601PAX",code:"az601pax",role:"Owner",client:"Calfox",accountant:"Gaby Sosa",teamsUrl:""},
   {name:"Arbor Ridge",slug:"ArborRidge",code:"rparbrid",role:"Owner",client:"TruAmerica Multifamily",accountant:"Emily Latrenta",teamsUrl:""},
   {name:"Arlington 360",slug:"Arlington360",code:"rparl360",role:"Owner",client:"TA Realty",accountant:"Gaby Sosa",teamsUrl:""},
@@ -338,619 +273,454 @@ const INITIAL_PROPERTIES=[
   {name:"Waterbend Apartments",slug:"WaterbendApartments",code:"rpwaterb",role:"Member",client:"",accountant:"",teamsUrl:""},
   {name:"Williston Living",slug:"WillistonLiving",code:"ndglevil",role:"Owner",client:"",accountant:"",teamsUrl:""},
   {name:"Willow",slug:"Willow",code:"orwillow",role:"Owner",client:"Shorenstein Properties LLC",accountant:"Gaby Sosa",teamsUrl:""},
-  {name:"Wingspan at Bridgeland",slug:"WingspanatBridgeland",code:"txwingsp",role:"Member",client:"",accountant:"",teamsUrl:""},
+  {name:"Wingspan at Bridgeland",slug:"WingspanatBridgeland",code:"txwingsp",role:"Member",client:"",accountant:"",teamsUrl:""}
 ];
 
-// ── ALL STATE VARIABLES (declared first to avoid temporal dead zone) ──
-let PROPERTIES = JSON.parse(localStorage.getItem('greystar_props')) || INITIAL_PROPERTIES;
-let CLIENT_COLORS_HEX = JSON.parse(localStorage.getItem('greystar_colors')) || {...DEFAULT_CLIENT_COLORS};
-let HIDDEN_PROPS = new Set(JSON.parse(localStorage.getItem('greystar_hidden')||'[]'));
-
-const MONTHS=[
+var MONTHS = [
   {n:"01",l:"January"},{n:"02",l:"February"},{n:"03",l:"March"},
   {n:"04",l:"April"},{n:"05",l:"May"},{n:"06",l:"June"},
   {n:"07",l:"July"},{n:"08",l:"August"},{n:"09",l:"September"},
-  {n:"10",l:"October"},{n:"11",l:"November"},{n:"12",l:"December"},
+  {n:"10",l:"October"},{n:"11",l:"November"},{n:"12",l:"December"}
 ];
 
-const now=new Date();
-let ST={year:now.getFullYear(),month:String(now.getMonth()+1).padStart(2,'0'),accountants:[],clients:[]};
+// ── 2. MUTABLE STATE (var so no TDZ issues) ──────────────────────────
+var PROPERTIES = JSON.parse(localStorage.getItem('greystar_props') || 'null') || INITIAL_PROPERTIES.slice();
+var CLIENT_COLORS_HEX = JSON.parse(localStorage.getItem('greystar_colors') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CLIENT_COLORS));
+var HIDDEN_CODES = JSON.parse(localStorage.getItem('greystar_hidden') || '[]');
 
-// ── JSONBIN CLOUD SYNC ──────────────────────────────────────────────
-const JBIN_KEY = ['\x24','2a\x24','10\x24','SFLOk7jf20NPRGW.wZpeQ.7O/rPN3nDfLFNecyb1SsHZmtBRrt19W'].join('');
-const JBIN_BASE = 'https://api.jsonbin.io/v3';
-let BIN_ID = localStorage.getItem('greystar_bin_id') || null;
-let syncTimeout = null;
+var _n = new Date();
+var ST = {
+  year: _n.getFullYear(),
+  month: String(_n.getMonth()+1).padStart(2,'0'),
+  accountants: [],
+  clients: []
+};
 
-function setSyncStatus(s, msg){
-  const el = document.getElementById('syncDot');
-  if(!el) return;
+var addTab = 'manual';
+var csvParsed = [];
+var lpTimer = null;
+var syncTimer = null;
+
+// ── 3. CLOUD SYNC ────────────────────────────────────────────────────
+var JBIN_BASE = 'https://api.jsonbin.io/v3';
+var JBIN_KEY = '$2a$10$SFLOk7jf20NPRGW.wZpeQ.7O' + '/rPN3nDfLFNecyb1SsHZmtBRrt19W';
+var BIN_ID = localStorage.getItem('greystar_bin_id') || '';
+
+function setSyncStatus(s) {
+  var el = document.getElementById('syncDot');
+  if (!el) return;
   el.className = 'sync-dot ' + s;
-  el.title = msg || {idle:'Synced',saving:'Saving…',saved:'Saved ✓',error:'Sync error — using local data'}[s] || '';
-  if(s==='saved') setTimeout(()=>setSyncStatus('idle'), 2500);
+  var titles = {idle:'Synced (click to refresh)',saving:'Saving…',saved:'Saved ✓',error:'Sync error — saved locally'};
+  el.title = titles[s] || '';
+  if (s === 'saved') setTimeout(function(){ setSyncStatus('idle'); }, 2500);
 }
 
-async function cloudLoad(){
+function cloudLoad() {
   setSyncStatus('saving');
-  try {
-    if(!BIN_ID){
-      // First time — create a new private bin seeded with default data
-      const res = await fetch(JBIN_BASE+'/b', {
-        method:'POST',
-        headers:{'Content-Type':'application/json','X-Master-Key':JBIN_KEY,'X-Bin-Name':'GreystarNav','X-Bin-Private':'true'},
-        body: JSON.stringify({properties:INITIAL_PROPERTIES,colors:{...DEFAULT_CLIENT_COLORS},hidden:[]})
-      });
-      if(!res.ok) throw new Error('create failed: '+res.status);
-      const data = await res.json();
-      BIN_ID = data.metadata.id;
+  if (!BIN_ID) {
+    // First run — create bin
+    fetch(JBIN_BASE + '/b', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','X-Master-Key':JBIN_KEY,'X-Bin-Name':'GreystarNav','X-Bin-Private':'true'},
+      body: JSON.stringify({properties:PROPERTIES, colors:CLIENT_COLORS_HEX, hidden:HIDDEN_CODES})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      BIN_ID = d.metadata.id;
       localStorage.setItem('greystar_bin_id', BIN_ID);
-      PROPERTIES = [...INITIAL_PROPERTIES];
-      CLIENT_COLORS_HEX = {...DEFAULT_CLIENT_COLORS};
-      HIDDEN_PROPS = new Set();
-    } else {
-      const res = await fetch(JBIN_BASE+'/b/'+BIN_ID+'/latest', {
-        headers:{'X-Master-Key':JBIN_KEY}
-      });
-      if(!res.ok) throw new Error('load failed: '+res.status);
-      const data = await res.json();
-      const rec = data.record;
-      PROPERTIES = rec.properties || INITIAL_PROPERTIES;
-      CLIENT_COLORS_HEX = rec.colors || {...DEFAULT_CLIENT_COLORS};
-      HIDDEN_PROPS = new Set(rec.hidden || []);
-    }
-    setSyncStatus('saved');
-    render();
-  } catch(e){
-    console.warn('Cloud load failed, using local data:', e.message);
-    setSyncStatus('error');
-    // Already using local data from init above — just re-render
-    render();
+      setSyncStatus('saved');
+      render();
+    })
+    .catch(function(e){ console.warn('cloudLoad create failed:', e); setSyncStatus('error'); render(); });
+  } else {
+    fetch(JBIN_BASE + '/b/' + BIN_ID + '/latest', {
+      headers: {'X-Master-Key': JBIN_KEY}
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      PROPERTIES = d.record.properties || INITIAL_PROPERTIES.slice();
+      CLIENT_COLORS_HEX = d.record.colors || JSON.parse(JSON.stringify(DEFAULT_CLIENT_COLORS));
+      HIDDEN_CODES = d.record.hidden || [];
+      setSyncStatus('saved');
+      render();
+    })
+    .catch(function(e){ console.warn('cloudLoad read failed:', e); setSyncStatus('error'); render(); });
   }
 }
 
-async function cloudSave(){
-  if(!BIN_ID){ await cloudLoad(); return; }
-  setSyncStatus('saving');
-  // Always keep localStorage in sync as offline backup
+function cloudSave() {
   localStorage.setItem('greystar_props', JSON.stringify(PROPERTIES));
   localStorage.setItem('greystar_colors', JSON.stringify(CLIENT_COLORS_HEX));
-  localStorage.setItem('greystar_hidden', JSON.stringify([...HIDDEN_PROPS]));
-  try {
-    const res = await fetch(JBIN_BASE+'/b/'+BIN_ID, {
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':JBIN_KEY},
-      body: JSON.stringify({properties:PROPERTIES,colors:CLIENT_COLORS_HEX,hidden:[...HIDDEN_PROPS]})
-    });
-    if(!res.ok) throw new Error('save failed: '+res.status);
-    setSyncStatus('saved');
-  } catch(e){
-    console.warn('Cloud save failed:', e.message);
-    setSyncStatus('error');
-  }
+  localStorage.setItem('greystar_hidden', JSON.stringify(HIDDEN_CODES));
+  if (!BIN_ID) { cloudLoad(); return; }
+  setSyncStatus('saving');
+  fetch(JBIN_BASE + '/b/' + BIN_ID, {
+    method: 'PUT',
+    headers: {'Content-Type':'application/json','X-Master-Key':JBIN_KEY},
+    body: JSON.stringify({properties:PROPERTIES, colors:CLIENT_COLORS_HEX, hidden:HIDDEN_CODES})
+  })
+  .then(function(){ setSyncStatus('saved'); })
+  .catch(function(e){ console.warn('cloudSave failed:', e); setSyncStatus('error'); });
 }
 
-function saveToStorage(){ clearTimeout(syncTimeout); syncTimeout=setTimeout(cloudSave, 800); }
+function saveToStorage(){ clearTimeout(syncTimer); syncTimer = setTimeout(cloudSave, 800); }
 function saveColors(){ saveToStorage(); }
 function saveHidden(){ saveToStorage(); }
 
-/* helpers */
-function ini(name){ /* unused now, kept for compat */ return ''; }
-function dispCode(code){ return code; }
-function urls(p){
-  const SP='https://greystar365.sharepoint.com/sites';
-  const m=MONTHS.find(x=>x.n===ST.month);
-  const mf=`${ST.month}-${m.l}`;
-  const y=String(ST.year);
-  function spUrl(site,path){return `${SP}/${site}/Shared%20Documents/Forms/AllItems.aspx?id=${encodeURIComponent(path).replace(/%2F/g,'%2F')}`;}
+// ── 4. HELPERS ───────────────────────────────────────────────────────
+function grad(client) {
+  var hex = CLIENT_COLORS_HEX[client];
+  if (!hex) return 'linear-gradient(145deg,#3a3a3c,' + DEFAULT_COLOR + ')';
+  var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  var dk = '#' + Math.max(0,r-60).toString(16).padStart(2,'0') + Math.max(0,g-60).toString(16).padStart(2,'0') + Math.max(0,b-60).toString(16).padStart(2,'0');
+  return 'linear-gradient(145deg,' + dk + ',' + hex + ')';
+}
+
+function urls(p) {
+  var SP = 'https://greystar365.sharepoint.com/sites';
+  var m = MONTHS.find(function(x){ return x.n === ST.month; });
+  var mf = ST.month + '-' + m.l;
+  var y = String(ST.year);
+  function spUrl(site, path){ return SP + '/' + site + '/Shared%20Documents/Forms/AllItems.aspx?id=' + encodeURIComponent(path).replace(/%2F/g,'%2F'); }
   return {
-    accounting:spUrl(`Prop-${p.slug}-${p.code}-Accounting`,`/sites/Prop-${p.slug}-${p.code}-Accounting/Shared Documents/Accounting/${y}/${mf}`),
-    ame:spUrl(`Prop-${p.slug}-${p.code}-AccountingMonthEnd`,`/sites/Prop-${p.slug}-${p.code}-AccountingMonthEnd/Shared Documents/Accounting Month End/${y}/${mf}`),
-    mor:spUrl(`Prop-${p.slug}-${p.code}-MonthlyOperationsReportMOR`,`/sites/Prop-${p.slug}-${p.code}-MonthlyOperationsReportMOR/Shared Documents/Monthly Operations Report (MOR)/${y}/${mf}`),
-    general:p.teamsUrl||null
+    accounting: spUrl('Prop-'+p.slug+'-'+p.code+'-Accounting', '/sites/Prop-'+p.slug+'-'+p.code+'-Accounting/Shared Documents/Accounting/'+y+'/'+mf),
+    ame:        spUrl('Prop-'+p.slug+'-'+p.code+'-AccountingMonthEnd', '/sites/Prop-'+p.slug+'-'+p.code+'-AccountingMonthEnd/Shared Documents/Accounting Month End/'+y+'/'+mf),
+    mor:        spUrl('Prop-'+p.slug+'-'+p.code+'-MonthlyOperationsReportMOR', '/sites/Prop-'+p.slug+'-'+p.code+'-MonthlyOperationsReportMOR/Shared Documents/Monthly Operations Report (MOR)/'+y+'/'+mf),
+    general:    p.teamsUrl || null
   };
 }
 
-/* clock */
-function tick(){const t=new Date();let h=t.getHours()%12||12,m=String(t.getMinutes()).padStart(2,'0');document.getElementById('clock').textContent=`${h}:${m}`;}
-tick();setInterval(tick,15000);
+// ── 5. CLOCK ─────────────────────────────────────────────────────────
+function tick() {
+  var t = new Date(), h = t.getHours()%12||12, m = String(t.getMinutes()).padStart(2,'0');
+  document.getElementById('clock').textContent = h + ':' + m;
+}
+tick(); setInterval(tick, 15000);
 
-/* render */
-function render(){
-  const q=document.getElementById('search').value.toLowerCase().trim();
-  const filtered=PROPERTIES.filter(p=>{
-    if(HIDDEN_PROPS.has(p.code))return false;
-    if(q&&!p.name.toLowerCase().includes(q)&&!p.code.includes(q)&&!p.client.toLowerCase().includes(q))return false;
-    if(ST.accountants.length&&!ST.accountants.includes(p.accountant))return false;
-    if(ST.clients.length&&!ST.clients.includes(p.client))return false;
+// ── 6. RENDER ────────────────────────────────────────────────────────
+function render() {
+  var q = document.getElementById('search').value.toLowerCase().trim();
+  var filtered = PROPERTIES.filter(function(p) {
+    if (HIDDEN_CODES.indexOf(p.code) >= 0) return false;
+    if (q && p.name.toLowerCase().indexOf(q) < 0 && p.code.indexOf(q) < 0 && (p.client||'').toLowerCase().indexOf(q) < 0) return false;
+    if (ST.accountants.length && ST.accountants.indexOf(p.accountant) < 0) return false;
+    if (ST.clients.length && ST.clients.indexOf(p.client) < 0) return false;
     return true;
   });
 
-  const hiddenCount=PROPERTIES.filter(p=>HIDDEN_PROPS.has(p.code)).length;
-  document.getElementById('count').textContent=`${filtered.length} of ${PROPERTIES.length} properties${hiddenCount?` · ${hiddenCount} hidden`:''}`;
+  var hiddenCount = PROPERTIES.filter(function(p){ return HIDDEN_CODES.indexOf(p.code) >= 0; }).length;
+  document.getElementById('count').textContent = filtered.length + ' of ' + PROPERTIES.length + ' properties' + (hiddenCount ? ' · ' + hiddenCount + ' hidden' : '');
 
-  const mObj=MONTHS.find(x=>x.n===ST.month);
-  document.getElementById('periodLabel').textContent=`${mObj.l.slice(0,3)} ${ST.year}`;
+  var mObj = MONTHS.find(function(x){ return x.n === ST.month; });
+  document.getElementById('periodLabel').textContent = mObj.l.slice(0,3) + ' ' + ST.year;
 
-  // Accountant label
-  const acctOn=ST.accountants.length>0;
-  document.getElementById('acctLabel').textContent=acctOn?(ST.accountants.length===1?ST.accountants[0].split(' ')[0]:`${ST.accountants.length} Accts`):'Accountant';
-  document.getElementById('acctLabel').classList.toggle('on',acctOn);
-  document.getElementById('acctBadge').textContent=ST.accountants.length||'';
-  document.getElementById('acctBadge').classList.toggle('on',acctOn);
+  var acctOn = ST.accountants.length > 0;
+  document.getElementById('acctLabel').textContent = acctOn ? (ST.accountants.length===1 ? ST.accountants[0].split(' ')[0] : ST.accountants.length+' Accts') : 'Accountant';
+  document.getElementById('acctLabel').classList.toggle('on', acctOn);
+  document.getElementById('acctBadge').textContent = acctOn ? ST.accountants.length : '';
+  document.getElementById('acctBadge').classList.toggle('on', acctOn);
 
-  // Client label
-  const clientOn=ST.clients.length>0;
-  document.getElementById('clientLabel').textContent=clientOn?(ST.clients.length===1?ST.clients[0].split(' ')[0]:`${ST.clients.length} Clients`):'Client';
-  document.getElementById('clientLabel').classList.toggle('on',clientOn);
-  document.getElementById('clientBadge').textContent=ST.clients.length||'';
-  document.getElementById('clientBadge').classList.toggle('on',clientOn);
+  var clientOn = ST.clients.length > 0;
+  document.getElementById('clientLabel').textContent = clientOn ? (ST.clients.length===1 ? ST.clients[0].split(' ')[0] : ST.clients.length+' Clients') : 'Client';
+  document.getElementById('clientLabel').classList.toggle('on', clientOn);
+  document.getElementById('clientBadge').textContent = clientOn ? ST.clients.length : '';
+  document.getElementById('clientBadge').classList.toggle('on', clientOn);
 
-  // Hidden icon badge
-  document.getElementById('hiddenBadge').textContent=hiddenCount||'';
-  document.getElementById('hiddenBadge').classList.toggle('on',hiddenCount>0);
-  document.getElementById('hiddenLabel').classList.toggle('on',hiddenCount>0);
+  document.getElementById('hiddenBadge').textContent = hiddenCount || '';
+  document.getElementById('hiddenBadge').classList.toggle('on', hiddenCount > 0);
+  document.getElementById('hiddenLabel').classList.toggle('on', hiddenCount > 0);
 
-  const grid=document.getElementById('grid');
-  if(!filtered.length){
-    grid.innerHTML='<div class="empty-grid"><div>🔍</div><div style="font-size:15px;margin-top:4px">No matches</div></div>';
-    return;
-  }
-  grid.innerHTML=filtered.map((p,i)=>{
-    const realIdx = PROPERTIES.indexOf(p);
-    return `<div class="app" style="animation-delay:${Math.min(i*.014,.4)}s"
-      onclick="openProp(${realIdx})"
-      oncontextmenu="event.preventDefault();toggleHide('${p.code}')"
-      data-code="${p.code}"
-      id="prop-${p.code}">
-      <div class="app-icon" style="background:${grad(p.client)}">${p.code}</div>
-      <div class="app-name">${p.name}</div>
-    </div>`;
+  var grid = document.getElementById('grid');
+  if (!filtered.length) { grid.innerHTML = '<div class="empty-grid"><div>🔍</div><div style="font-size:15px;margin-top:4px">No matches</div></div>'; return; }
+
+  grid.innerHTML = filtered.map(function(p, i) {
+    var realIdx = PROPERTIES.indexOf(p);
+    return '<div class="app" style="animation-delay:' + Math.min(i*.014,.4) + 's"' +
+      ' onclick="openProp(' + realIdx + ')"' +
+      ' oncontextmenu="event.preventDefault();toggleHide(\'' + p.code + '\')"' +
+      ' data-code="' + p.code + '" id="prop-' + p.code + '">' +
+      '<div class="app-icon" style="background:' + grad(p.client) + '">' + p.code + '</div>' +
+      '<div class="app-name">' + p.name + '</div></div>';
   }).join('');
-
-  // Long-press support for touch devices
   addLongPressListeners();
 }
 
-/* property sheet */
-function openProp(idx){
-  const p=PROPERTIES[idx];
-  const u=urls(p);
-  const mObj=MONTHS.find(x=>x.n===ST.month);
-  const chips=[
-    p.client?`<span class="chip chip-client">${p.client}</span>`:'',
-    p.accountant?`<span class="chip chip-acct">👤 ${p.accountant}</span>`:'',
-    `<span class="chip ${p.role==='Owner'?'chip-role-owner':'chip-role-member'}">${p.role}</span>`
-  ].join('');
-  const gen=u.general
-    ?`<a class="folder-btn" href="${u.general}" target="_blank"><div class="fi gen">💬</div><div><div class="fb-name">General</div><div class="fb-sub">Teams</div></div></a>`
-    :`<span class="folder-btn disabled"><div class="fi gen">💬</div><div><div class="fb-name">General</div><div class="fb-sub">Not linked</div></div></span>`;
-
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="ps-header">
-      <div class="ps-name">${p.name}</div>
-      <div class="ps-code">${p.code}</div>
-      <div class="ps-chips">${chips}</div>
-    </div >
-    <div class="folders-label">Open — ${mObj.l} ${ST.year}</div>
-    <div class="folder-grid">
-      <a class="folder-btn" href="${u.accounting}" target="_blank"><div class="fi acct">📁</div><div><div class="fb-name">Accounting</div><div class="fb-sub">SharePoint</div></div></a >
-      <a class="folder-btn" href="${u.ame}" target="_blank"><div class="fi ame">✅</div><div><div class="fb-name">AME</div><div class="fb-sub">Month End</div></div></a >
-      <a class="folder-btn" href="${u.mor}" target="_blank"><div class="fi mor">📄</div><div><div class="fb-name">MOR</div><div class="fb-sub">Operations</div></div></a >
-      ${gen}
-    </div >
-    <div class="ps-actions">
-      <button class="btn-edit" onclick="openEditSheet(${idx})">Edit Details</button>
-      <button class="btn-edit" style="background:rgba(255,255,255,0.06)" onclick="closeSheet();setTimeout(()=>toggleHide('${p.code}'),200)">Hide</button>
-      <button class="btn-delete" onclick="deleteProp(${idx})">Delete</button>
-    </div>`;
+// ── 7. PROPERTY SHEET ────────────────────────────────────────────────
+function openProp(idx) {
+  var p = PROPERTIES[idx];
+  var u = urls(p);
+  var mObj = MONTHS.find(function(x){ return x.n === ST.month; });
+  var chips = (p.client ? '<span class="chip chip-client">'+p.client+'</span>' : '') +
+    (p.accountant ? '<span class="chip chip-acct">👤 '+p.accountant+'</span>' : '') +
+    '<span class="chip '+(p.role==='Owner'?'chip-role-owner':'chip-role-member')+'">'+p.role+'</span>';
+  var gen = u.general
+    ? '<a class="folder-btn" href="'+u.general+'" target="_blank"><div class="fi gen">💬</div><div><div class="fb-name">General</div><div class="fb-sub">Teams</div></div></a>'
+    : '<span class="folder-btn disabled"><div class="fi gen">💬</div><div><div class="fb-name">General</div><div class="fb-sub">Not linked</div></div></span>';
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="ps-name">'+p.name+'</div><div class="ps-code">'+p.code+'</div><div class="ps-chips">'+chips+'</div>' +
+    '<div class="folders-label">Open — '+mObj.l+' '+ST.year+'</div>' +
+    '<div class="folder-grid">' +
+      '<a class="folder-btn" href="'+u.accounting+'" target="_blank"><div class="fi acct">📁</div><div><div class="fb-name">Accounting</div><div class="fb-sub">SharePoint</div></div></a>' +
+      '<a class="folder-btn" href="'+u.ame+'" target="_blank"><div class="fi ame">✅</div><div><div class="fb-name">AME</div><div class="fb-sub">Month End</div></div></a>' +
+      '<a class="folder-btn" href="'+u.mor+'" target="_blank"><div class="fi mor">📄</div><div><div class="fb-name">MOR</div><div class="fb-sub">Operations</div></div></a>' +
+      gen +
+    '</div>' +
+    '<div class="ps-actions">' +
+      '<button class="btn-edit" onclick="openEditSheet('+idx+')">Edit</button>' +
+      '<button class="btn-edit" style="background:rgba(255,255,255,0.06)" onclick="closeSheet();setTimeout(function(){toggleHide(\''+p.code+'\')},200)">Hide</button>' +
+      '<button class="btn-delete" onclick="deleteProp('+idx+')">Delete</button>' +
+    '</div>';
   openSheet();
 }
 
-function deleteProp(idx){
-  if(confirm("Are you sure you want to delete this property?")){
-    PROPERTIES.splice(idx, 1);
-    saveToStorage();
-    closeSheet();
-    render();
-  }
+function deleteProp(idx) {
+  if (confirm('Delete this property?')) { PROPERTIES.splice(idx,1); saveToStorage(); closeSheet(); render(); }
 }
 
-function openEditSheet(idx){
-  const p = PROPERTIES[idx];
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">Edit Property</div>
-    <div class="edit-form">
-      <div class="edit-group">
-        <label>Property Name</label>
-        <input type="text" id="editName" value="${p.name}">
-      </div>
-      <div class="edit-group">
-        <label>Client</label>
-        <input type="text" id="editClient" value="${p.client}">
-      </div>
-      <div class="edit-group">
-        <label>Accountant</label>
-        <input type="text" id="editAcct" value="${p.accountant}">
-      </div>
-    </div>
-    <button class="done-btn" onclick="saveEdit(${idx})">Save Changes</button>
-    <button class="btn-edit" style="margin-top:10px; background:transparent; border:none;" onclick="closeSheet()">Cancel</button>
-  `;
+function openEditSheet(idx) {
+  var p = PROPERTIES[idx];
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">Edit Property</div>' +
+    '<div class="edit-form">' +
+      '<div class="edit-group"><label>Property Name</label><input type="text" id="editName" value="'+p.name+'"></div>' +
+      '<div class="edit-group"><label>Client</label><input type="text" id="editClient" value="'+(p.client||'')+'"></div>' +
+      '<div class="edit-group"><label>Accountant</label><input type="text" id="editAcct" value="'+(p.accountant||'')+'"></div>' +
+    '</div>' +
+    '<button class="done-btn" onclick="saveEdit('+idx+')">Save Changes</button>' +
+    '<button class="btn-edit" style="margin-top:10px;background:transparent;border:none;width:100%" onclick="closeSheet()">Cancel</button>';
   openSheet();
 }
 
-function saveEdit(idx){
-  const name = document.getElementById('editName').value.trim();
-  const client = document.getElementById('editClient').value.trim();
-  const acct = document.getElementById('editAcct').value.trim();
-
-  if(!name) return alert("Name is required");
-
+function saveEdit(idx) {
+  var name = document.getElementById('editName').value.trim();
+  if (!name) return alert('Name is required');
   PROPERTIES[idx].name = name;
-  PROPERTIES[idx].client = client;
-  PROPERTIES[idx].accountant = acct;
-
-  saveToStorage();
-  closeSheet();
-  render();
+  PROPERTIES[idx].client = document.getElementById('editClient').value.trim();
+  PROPERTIES[idx].accountant = document.getElementById('editAcct').value.trim();
+  saveToStorage(); closeSheet(); render();
 }
 
-/* period sheet */
-function openPeriodSheet(){
-  const yrs=[2024,2025,2026].map(y=>`<button class="yr-btn${y===ST.year?' sel':''}" onclick="setYear(${y})">${y}</button>`).join('');
-  const mos=MONTHS.map(m=>`<button class="mo-btn${m.n===ST.month?' sel':''}" onclick="setMonth('${m.n}')">${m.l.slice(0,3)}</button>`).join('');
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">Period</div >
-    <div class="year-row">${yrs}</div >
-    <div class="mo-grid">${mos}</div >
-    <button class="done-btn" onclick="closeSheet()">Done</button>`;
+// ── 8. PERIOD SHEET ──────────────────────────────────────────────────
+function openPeriodSheet() {
+  var yrs = [2024,2025,2026].map(function(y){ return '<button class="yr-btn'+(y===ST.year?' sel':'')+'" onclick="setYear('+y+')">'+y+'</button>'; }).join('');
+  var mos = MONTHS.map(function(m){ return '<button class="mo-btn'+(m.n===ST.month?' sel':'')+'" onclick="setMonth(\''+m.n+'\')">'+m.l.slice(0,3)+'</button>'; }).join('');
+  document.getElementById('sheetBody').innerHTML = '<div class="fs-title">Period</div><div class="year-row">'+yrs+'</div><div class="mo-grid">'+mos+'</div><button class="done-btn" onclick="closeSheet()">Done</button>';
   openSheet();
 }
-function setYear(y){
-  ST.year=y;
-  document.querySelectorAll('.yr-btn').forEach(b=>b.classList.toggle('sel',parseInt(b.textContent)===y));
-  render();
-}
-function setMonth(m){
-  ST.month=m;
-  document.querySelectorAll('.mo-btn').forEach(b=>{
-    const mo=MONTHS.find(x=>x.l.slice(0,3)===b.textContent);
-    if(mo)b.classList.toggle('sel',mo.n===m);
-  });
-  render();
-}
+function setYear(y) { ST.year=y; document.querySelectorAll('.yr-btn').forEach(function(b){ b.classList.toggle('sel',parseInt(b.textContent)===y); }); render(); }
+function setMonth(m) { ST.month=m; document.querySelectorAll('.mo-btn').forEach(function(b){ var mo=MONTHS.find(function(x){return x.l.slice(0,3)===b.textContent;}); if(mo)b.classList.toggle('sel',mo.n===m); }); render(); }
 
-/* filter sheet — multi-select */
-function openFilterSheet(type){
-  const isA=type==='accountant';
-  const vals=[...new Set(PROPERTIES.map(p=>isA?p.accountant:p.client).filter(Boolean))].sort();
-  const cur=isA?ST.accountants:ST.clients;
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">${isA?'Accountants':'Clients'}</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:12px">Select one or more to filter</div>
-    <div class="fo-list" id="foList">
-      ${vals.map(v=>`<div class="fo${cur.includes(v)?' sel':''}" onclick="toggleFMulti('${type}','${v.replace(/'/g,"\\'")}',this)">
-        <span>${v}</span><div class="fo-check"></div>
-      </div>`).join('')}
-    </div>
-    <button class="done-btn" onclick="closeSheet()">Done</button>`;
+// ── 9. FILTER SHEET ──────────────────────────────────────────────────
+function openFilterSheet(type) {
+  var isA = type==='accountant';
+  var vals = [];
+  PROPERTIES.forEach(function(p){ var v=isA?p.accountant:p.client; if(v&&vals.indexOf(v)<0)vals.push(v); });
+  vals.sort();
+  var cur = isA ? ST.accountants : ST.clients;
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">'+(isA?'Accountants':'Clients')+'</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:12px">Select one or more to filter</div>' +
+    '<div class="fo-list">' +
+    vals.map(function(v){ return '<div class="fo'+(cur.indexOf(v)>=0?' sel':'')+'" onclick="toggleFMulti(\''+type+'\',\''+v.replace(/'/g,"\\'")+'\',this)"><span>'+v+'</span><div class="fo-check"></div></div>'; }).join('') +
+    '</div><button class="done-btn" onclick="closeSheet()">Done</button>';
   openSheet();
 }
-function toggleFMulti(type,val,el){
-  const arr=type==='accountant'?ST.accountants:ST.clients;
-  const idx=arr.indexOf(val);
-  if(idx>=0){arr.splice(idx,1);el.classList.remove('sel');}
-  else{arr.push(val);el.classList.add('sel');}
+function toggleFMulti(type, val, el) {
+  var arr = type==='accountant' ? ST.accountants : ST.clients;
+  var idx = arr.indexOf(val);
+  if (idx>=0) { arr.splice(idx,1); el.classList.remove('sel'); } else { arr.push(val); el.classList.add('sel'); }
   render();
 }
-function clearAll(){
-  ST.accountants=[];ST.clients=[];
-  document.getElementById('search').value='';
-  render();
-}
+function clearAll() { ST.accountants=[]; ST.clients=[]; document.getElementById('search').value=''; render(); }
 
-/* hide / show properties */
-function toggleHide(code){
-  if(HIDDEN_PROPS.has(code)){
-    HIDDEN_PROPS.delete(code);
-    saveHidden();
-    render();
+// ── 10. HIDE / SHOW ──────────────────────────────────────────────────
+function toggleHide(code) {
+  var idx = HIDDEN_CODES.indexOf(code);
+  if (idx >= 0) {
+    HIDDEN_CODES.splice(idx,1); saveHidden(); render();
   } else {
-    HIDDEN_PROPS.add(code);
-    saveHidden();
-    // brief visual flash before disappearing
-    const el=document.getElementById(`prop-${code}`);
-    if(el){el.style.transition='opacity .25s,transform .25s';el.style.opacity='0';el.style.transform='scale(0.7)';}
-    setTimeout(()=>render(),260);
+    HIDDEN_CODES.push(code); saveHidden();
+    var el = document.getElementById('prop-'+code);
+    if (el) { el.style.transition='opacity .25s,transform .25s'; el.style.opacity='0'; el.style.transform='scale(0.7)'; }
+    setTimeout(function(){ render(); }, 260);
   }
 }
 
-function openHiddenSheet(){
-  const hidden=PROPERTIES.filter(p=>HIDDEN_PROPS.has(p.code));
-  if(!hidden.length){
-    document.getElementById('sheetBody').innerHTML=`
-      <div class="fs-title">Hidden Properties</div>
-      <div style="text-align:center;padding:40px 0;color:rgba(255,255,255,0.35)">
-        <div style="font-size:40px;margin-bottom:12px">👁️</div>
-        <div>No hidden properties</div>
-        <div style="font-size:12px;margin-top:6px;opacity:0.6">Long-press or right-click any property to hide it</div>
-      </div>
-      <button class="done-btn" onclick="closeSheet()">Done</button>`;
-    openSheet();return;
+function openHiddenSheet() {
+  var hidden = PROPERTIES.filter(function(p){ return HIDDEN_CODES.indexOf(p.code)>=0; });
+  if (!hidden.length) {
+    document.getElementById('sheetBody').innerHTML =
+      '<div class="fs-title">Hidden Properties</div>' +
+      '<div style="text-align:center;padding:40px 0;color:rgba(255,255,255,0.35)"><div style="font-size:40px;margin-bottom:12px">👁️</div><div>No hidden properties</div><div style="font-size:12px;margin-top:6px;opacity:0.6">Right-click or long-press a property to hide it</div></div>' +
+      '<button class="done-btn" onclick="closeSheet()">Done</button>';
+    openSheet(); return;
   }
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">Hidden Properties</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:14px">Tap to restore a property</div>
-    <div class="fo-list">
-      ${hidden.map(p=>`
-        <div class="fo" onclick="restoreProp('${p.code}',this)" style="gap:12px">
-          <div class="app-icon" style="background:${grad(p.client)};width:40px;height:40px;border-radius:10px;font-size:8px;flex-shrink:0">${p.code}</div>
-          <div style="flex:1">
-            <div style="font-size:15px;font-weight:600">${p.name}</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px">${p.code}${p.client?' · '+p.client:''}</div>
-          </div>
-          <div style="font-size:12px;color:#30D158;font-weight:600">Restore</div>
-        </div>`).join('')}
-    </div>
-    <button class="done-btn" style="background:rgba(255,59,48,0.2);border:1px solid rgba(255,59,48,0.3);color:#FF453A;margin-top:4px" onclick="clearAllHidden()">Show All Hidden</button>
-    <button class="done-btn" style="margin-top:10px" onclick="closeSheet()">Done</button>`;
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">Hidden Properties</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:14px">Tap to restore</div>' +
+    '<div class="fo-list">' +
+    hidden.map(function(p){
+      return '<div class="fo" onclick="restoreProp(\''+p.code+'\',this)" style="gap:12px">' +
+        '<div class="app-icon" style="background:'+grad(p.client)+';width:40px;height:40px;border-radius:10px;font-size:8px;flex-shrink:0">'+p.code+'</div>' +
+        '<div style="flex:1"><div style="font-size:15px;font-weight:600">'+p.name+'</div><div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px">'+p.code+(p.client?' · '+p.client:'')+'</div></div>' +
+        '<div style="font-size:12px;color:#30D158;font-weight:600">Restore</div></div>';
+    }).join('') +
+    '</div>' +
+    '<button class="done-btn" style="background:rgba(255,59,48,0.2);border:1px solid rgba(255,59,48,0.3);color:#FF453A;margin-top:4px" onclick="clearAllHidden()">Show All</button>' +
+    '<button class="done-btn" style="margin-top:10px" onclick="closeSheet()">Done</button>';
   openSheet();
 }
 
-function restoreProp(code,el){
-  HIDDEN_PROPS.delete(code);
-  saveHidden();
-  el.style.transition='opacity .2s';el.style.opacity='0';
-  setTimeout(()=>{render();openHiddenSheet();},220);
+function restoreProp(code, el) {
+  var idx = HIDDEN_CODES.indexOf(code); if(idx>=0) HIDDEN_CODES.splice(idx,1);
+  saveHidden(); el.style.transition='opacity .2s'; el.style.opacity='0';
+  setTimeout(function(){ render(); openHiddenSheet(); }, 220);
 }
+function clearAllHidden() { HIDDEN_CODES=[]; saveHidden(); render(); closeSheet(); }
 
-function clearAllHidden(){
-  HIDDEN_PROPS.clear();
-  saveHidden();
-  render();
-  closeSheet();
-}
-
-/* long-press support */
-let lpTimer=null;
-function addLongPressListeners(){
-  document.querySelectorAll('.app[data-code]').forEach(el=>{
-    el.addEventListener('touchstart',e=>{
-      const code=el.dataset.code;
-      lpTimer=setTimeout(()=>{
-        // haptic if available
-        if(navigator.vibrate)navigator.vibrate(40);
-        toggleHide(code);
-      },600);
-    },{passive:true});
-    el.addEventListener('touchend',()=>{clearTimeout(lpTimer);},{passive:true});
-    el.addEventListener('touchmove',()=>{clearTimeout(lpTimer);},{passive:true});
+function addLongPressListeners() {
+  document.querySelectorAll('.app[data-code]').forEach(function(el) {
+    el.addEventListener('touchstart', function() {
+      lpTimer = setTimeout(function(){ if(navigator.vibrate)navigator.vibrate(40); toggleHide(el.dataset.code); }, 600);
+    }, {passive:true});
+    el.addEventListener('touchend',  function(){ clearTimeout(lpTimer); }, {passive:true});
+    el.addEventListener('touchmove', function(){ clearTimeout(lpTimer); }, {passive:true});
   });
 }
 
-/* sheet open/close */
-function openSheet(){document.getElementById('overlay').classList.add('open');}
-function closeSheet(){document.getElementById('overlay').classList.remove('open');}
-function maybeClose(e){if(e.target===document.getElementById('overlay'))closeSheet();}
+// ── 11. SHEET ────────────────────────────────────────────────────────
+function openSheet()  { document.getElementById('overlay').classList.add('open'); }
+function closeSheet() { document.getElementById('overlay').classList.remove('open'); }
+function maybeClose(e){ if(e.target===document.getElementById('overlay')) closeSheet(); }
 
-/* ── ADD PROPERTY SHEET (Manual + CSV) ── */
-let addTab='manual';
-let csvParsed=[];
+// ── 12. ADD PROPERTY ─────────────────────────────────────────────────
+function openAddSheet() { addTab='manual'; csvParsed=[]; renderAddSheet(); openSheet(); }
 
-function openAddSheet(){
-  addTab='manual';csvParsed=[];
-  renderAddSheet();
-  openSheet();
+function renderAddSheet() {
+  var manualForm =
+    '<div class="edit-form">' +
+      '<div class="edit-group"><label>Property Name *</label><input type="text" id="addName" placeholder="e.g. Broadstone Trailside"></div>' +
+      '<div class="edit-group"><label>Property Code *</label><input type="text" id="addCode" placeholder="e.g. rpbrotra"></div>' +
+      '<div class="edit-group"><label>Client</label><input type="text" id="addClient" placeholder="e.g. TA Realty"></div>' +
+      '<div class="edit-group"><label>Accountant</label><input type="text" id="addAcct" placeholder="e.g. Gaby Sosa"></div>' +
+      '<div class="edit-group"><label>Role</label><input type="text" id="addRole" value="Owner" placeholder="Owner or Member"></div>' +
+    '</div><button class="done-btn" onclick="addManual()">Add Property</button>';
+  var csvForm =
+    '<div class="csv-zone" id="csvZone" onclick="document.getElementById(\'csvFile\').click()" ondragover="event.preventDefault();this.classList.add(\'drag\')" ondragleave="this.classList.remove(\'drag\')" ondrop="event.preventDefault();this.classList.remove(\'drag\');handleCSV(event.dataTransfer.files[0])">' +
+      '<div style="font-size:36px;opacity:0.5">📄</div>' +
+      '<div class="csv-zone-label">Tap to upload or drag a CSV</div>' +
+      '<div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:6px">Columns: name, code, client, accountant, role</div>' +
+      '<input type="file" id="csvFile" accept=".csv,.tsv,.txt" onchange="handleCSV(this.files[0])">' +
+    '</div>' +
+    '<div class="csv-preview" id="csvPreview"></div>' +
+    '<button class="done-btn" id="csvImportBtn" style="opacity:0.4;pointer-events:none" onclick="importCSV()">Import 0 Properties</button>';
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">Add Properties</div>' +
+    '<div class="tab-bar">' +
+      '<button class="tab-btn '+(addTab==='manual'?'active':'')+'" onclick="addTab=\'manual\';renderAddSheet()">Manual</button>' +
+      '<button class="tab-btn '+(addTab==='csv'?'active':'')+'" onclick="addTab=\'csv\';renderAddSheet()">CSV Upload</button>' +
+    '</div>' + (addTab==='manual' ? manualForm : csvForm);
 }
 
-function renderAddSheet(){
-  const manualActive=addTab==='manual'?'active':'';
-  const csvActive=addTab==='csv'?'active':'';
-
-  const manualForm=`
-    <div class="edit-form">
-      <div class="edit-group"><label>Property Name *</label><input type="text" id="addName" placeholder="e.g. Broadstone Trailside"></div>
-      <div class="edit-group"><label>Property Code *</label><input type="text" id="addCode" placeholder="e.g. rpbrotra"></div>
-      <div class="edit-group"><label>Client</label><input type="text" id="addClient" placeholder="e.g. TA Realty"></div>
-      <div class="edit-group"><label>Accountant</label><input type="text" id="addAcct" placeholder="e.g. Gaby Sosa"></div>
-      <div class="edit-group"><label>Role</label><input type="text" id="addRole" value="Owner" placeholder="Owner or Member"></div>
-    </div>
-    <button class="done-btn" onclick="addManual()">Add Property</button>`;
-
-  const csvForm=`
-    <div class="csv-zone" id="csvZone" onclick="document.getElementById('csvFile').click()"
-         ondragover="event.preventDefault();this.classList.add('drag')"
-         ondragleave="this.classList.remove('drag')"
-         ondrop="event.preventDefault();this.classList.remove('drag');handleCSV(event.dataTransfer.files[0])">
-      <div style="font-size:36px;opacity:0.5">📄</div>
-      <div class="csv-zone-label">Tap to upload or drag a CSV here</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:6px">Columns: name, code, client, accountant, role</div>
-      <input type="file" id="csvFile" accept=".csv,.tsv,.txt" onchange="handleCSV(this.files[0])">
-    </div>
-    <div class="csv-preview" id="csvPreview"></div>
-    <button class="done-btn" id="csvImportBtn" style="opacity:0.4;pointer-events:none" onclick="importCSV()">Import 0 Properties</button>`;
-
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">Add Properties</div>
-    <div class="tab-bar">
-      <button class="tab-btn ${manualActive}" onclick="addTab='manual';renderAddSheet()">Manual</button>
-      <button class="tab-btn ${csvActive}" onclick="addTab='csv';renderAddSheet()">CSV Upload</button>
-    </div>
-    ${addTab==='manual'?manualForm:csvForm}`;
+function addManual() {
+  var name = document.getElementById('addName').value.trim();
+  var code = document.getElementById('addCode').value.trim().toLowerCase();
+  if (!name||!code) return alert('Name and Code are required');
+  if (PROPERTIES.some(function(p){return p.code===code;})) return alert('Code "'+code+'" already exists');
+  var cl = document.getElementById('addClient').value.trim();
+  if (cl && !CLIENT_COLORS_HEX[cl]) CLIENT_COLORS_HEX[cl] = 'hsl('+Math.floor(Math.random()*360)+',65%,55%)';
+  PROPERTIES.push({name:name, slug:name.replace(/[^a-zA-Z0-9]/g,''), code:code, role:document.getElementById('addRole').value.trim()||'Owner', client:cl, accountant:document.getElementById('addAcct').value.trim(), teamsUrl:''});
+  saveToStorage(); closeSheet(); render();
 }
 
-function addManual(){
-  const name=document.getElementById('addName').value.trim();
-  const code=document.getElementById('addCode').value.trim().toLowerCase();
-  if(!name||!code) return alert('Name and Code are required');
-  if(PROPERTIES.some(p=>p.code===code)) return alert('A property with code "'+code+'" already exists');
-  const slug=name.replace(/[^a-zA-Z0-9]/g,'');
-  PROPERTIES.push({
-    name, slug, code,
-    role:document.getElementById('addRole').value.trim()||'Owner',
-    client:document.getElementById('addClient').value.trim(),
-    accountant:document.getElementById('addAcct').value.trim(),
-    teamsUrl:''
-  });
-  // Auto-register client color if new
-  const cl=document.getElementById('addClient').value.trim();
-  if(cl && !CLIENT_COLORS_HEX[cl]){
-    const hue=Math.floor(Math.random()*360);
-    CLIENT_COLORS_HEX[cl]=`hsl(${hue},65%,55%)`;
-    saveColors();
-  }
-  saveToStorage();closeSheet();render();
-}
-
-function handleCSV(file){
-  if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const lines=e.target.result.split(/\r?\n/).filter(l=>l.trim());
-    if(lines.length<2){alert('CSV needs a header row + data');return;}
-    // Parse header
-    const sep=lines[0].includes('\t')?'\t':',';
-    const hdr=lines[0].split(sep).map(h=>h.trim().toLowerCase().replace(/['"]/g,''));
-    const nameIdx=hdr.findIndex(h=>h==='name'||h==='property'||h==='property name');
-    const codeIdx=hdr.findIndex(h=>h==='code'||h==='property code'||h==='prop code');
-    const clientIdx=hdr.findIndex(h=>h==='client'||h==='owner');
-    const acctIdx=hdr.findIndex(h=>h==='accountant'||h==='acct');
-    const roleIdx=hdr.findIndex(h=>h==='role');
-
-    if(nameIdx===-1||codeIdx===-1){alert('CSV must have "name" and "code" columns');return;}
-
+function handleCSV(file) {
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var lines = e.target.result.split(/\r?\n/).filter(function(l){return l.trim();});
+    if (lines.length<2) { alert('CSV needs a header row + data'); return; }
+    var sep = lines[0].indexOf('\t')>=0 ? '\t' : ',';
+    var hdr = lines[0].split(sep).map(function(h){return h.trim().toLowerCase().replace(/['"]/g,'');});
+    var nameIdx=hdr.indexOf('name'); if(nameIdx<0)nameIdx=hdr.indexOf('property');
+    var codeIdx=hdr.indexOf('code'); if(codeIdx<0)codeIdx=hdr.indexOf('property code');
+    var clientIdx=hdr.indexOf('client'); var acctIdx=hdr.indexOf('accountant'); var roleIdx=hdr.indexOf('role');
+    if (nameIdx<0||codeIdx<0) { alert('CSV must have "name" and "code" columns'); return; }
     csvParsed=[];
-    const existingCodes=new Set(PROPERTIES.map(p=>p.code));
-    for(let i=1;i<lines.length;i++){
-      const cols=lines[i].split(sep).map(c=>c.trim().replace(/^["']|["']$/g,''));
-      const code=cols[codeIdx]?.toLowerCase();
-      if(!code||!cols[nameIdx])continue;
-      if(existingCodes.has(code)){continue;} // skip dupes
-      csvParsed.push({
-        name:cols[nameIdx],
-        code:code,
-        slug:cols[nameIdx].replace(/[^a-zA-Z0-9]/g,''),
-        client:clientIdx>=0?(cols[clientIdx]||''):'',
-        accountant:acctIdx>=0?(cols[acctIdx]||''):'',
-        role:roleIdx>=0?(cols[roleIdx]||'Owner'):'Owner',
-        teamsUrl:''
-      });
+    var existing={};PROPERTIES.forEach(function(p){existing[p.code]=1;});
+    for (var i=1;i<lines.length;i++) {
+      var cols=lines[i].split(sep).map(function(c){return c.trim().replace(/^["']|["']$/g,'');});
+      var code=(cols[codeIdx]||'').toLowerCase();
+      if (!code||!cols[nameIdx]||existing[code]) continue;
+      csvParsed.push({name:cols[nameIdx],code:code,slug:cols[nameIdx].replace(/[^a-zA-Z0-9]/g,''),client:clientIdx>=0?(cols[clientIdx]||''):'',accountant:acctIdx>=0?(cols[acctIdx]||''):'',role:roleIdx>=0?(cols[roleIdx]||'Owner'):'Owner',teamsUrl:''});
     }
-
-    // Show preview
-    const prev=document.getElementById('csvPreview');
-    if(csvParsed.length===0){
-      prev.innerHTML='<div style="padding:12px;text-align:center;color:rgba(255,255,255,0.4)">No new properties found (all may already exist)</div>';
-    } else {
-      prev.innerHTML=csvParsed.map(p=>`<div class="csv-row"><span>${p.name}</span><span style="opacity:0.5">${p.code}</span></div>`).join('');
-    }
-    const btn=document.getElementById('csvImportBtn');
-    btn.textContent=`Import ${csvParsed.length} Properties`;
+    var prev=document.getElementById('csvPreview');
+    prev.innerHTML=csvParsed.length ? csvParsed.map(function(p){return '<div class="csv-row"><span>'+p.name+'</span><span style="opacity:0.5">'+p.code+'</span></div>';}).join('') : '<div style="padding:12px;text-align:center;color:rgba(255,255,255,0.4)">No new properties found</div>';
+    var btn=document.getElementById('csvImportBtn');
+    btn.textContent='Import '+csvParsed.length+' Properties';
     btn.style.opacity=csvParsed.length?'1':'0.4';
     btn.style.pointerEvents=csvParsed.length?'auto':'none';
   };
   reader.readAsText(file);
 }
 
-function importCSV(){
-  if(!csvParsed.length)return;
-  // Auto-register any new client colors
-  csvParsed.forEach(p=>{
-    if(p.client && !CLIENT_COLORS_HEX[p.client]){
-      const hue=Math.floor(Math.random()*360);
-      CLIENT_COLORS_HEX[p.client]=`hsl(${hue},65%,55%)`;
-    }
-  });
-  saveColors();
-  PROPERTIES.push(...csvParsed);
-  saveToStorage();
-  closeSheet();
-  render();
-  setTimeout(()=>alert(`Imported ${csvParsed.length} properties`),300);
+function importCSV() {
+  if (!csvParsed.length) return;
+  csvParsed.forEach(function(p){ if(p.client&&!CLIENT_COLORS_HEX[p.client]) CLIENT_COLORS_HEX[p.client]='hsl('+Math.floor(Math.random()*360)+',65%,55%)'; });
+  PROPERTIES.push.apply(PROPERTIES, csvParsed);
+  saveToStorage(); closeSheet(); render();
+  setTimeout(function(){ alert('Imported '+csvParsed.length+' properties'); }, 300);
 }
 
-/* ── CLIENT COLORS SHEET ── */
-function openColorsSheet(){
-  // Build list of all clients with property counts
-  const clientMap={};
-  PROPERTIES.forEach(p=>{if(p.client){clientMap[p.client]=(clientMap[p.client]||0)+1;}});
-  const clients=Object.keys(clientMap).sort();
-
-  // Also include colors that exist in saved colors but may not be in current properties
-  Object.keys(CLIENT_COLORS_HEX).forEach(c=>{if(!clientMap[c])clientMap[c]=0;});
-  const allClients=[...new Set([...clients,...Object.keys(CLIENT_COLORS_HEX)])].sort();
-
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">Client Colors</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:12px">Tap a client to change its color</div>
-    <div class="color-list">
-      ${allClients.map(c=>{
-        const hex=CLIENT_COLORS_HEX[c]||DEFAULT_COLOR;
-        const cnt=clientMap[c]||0;
-        return `<div class="color-row" onclick="editColor('${c.replace(/'/g,"\\'")}')">
-          <div class="color-swatch" style="background:${hex}"></div>
-          <div class="color-name">${c}</div>
-          <div class="color-count">${cnt}</div>
-        </div>`;
-      }).join('')}
-    </div>
-    <div style="margin-top:16px;padding-top:12px;border-top:0.5px solid rgba(255,255,255,0.08)">
-      <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:8px">Unassigned properties</div>
-      <div class="color-row" style="cursor:default">
-        <div class="color-swatch" style="background:${DEFAULT_COLOR}"></div>
-        <div class="color-name" style="opacity:0.5">No client</div>
-        <div class="color-count">${PROPERTIES.filter(p=>!p.client).length}</div>
-      </div>
-    </div>
-    <button class="reset-btn" onclick="resetColors()">Reset All Colors to Default</button>
-    <button class="done-btn" onclick="closeSheet()">Done</button>`;
+// ── 13. COLORS SHEET ─────────────────────────────────────────────────
+function openColorsSheet() {
+  var clientMap={};
+  PROPERTIES.forEach(function(p){if(p.client)clientMap[p.client]=(clientMap[p.client]||0)+1;});
+  Object.keys(CLIENT_COLORS_HEX).forEach(function(c){if(!clientMap[c])clientMap[c]=0;});
+  var all=Object.keys(clientMap).sort();
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">Client Colors</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:12px">Tap a client to change its color</div>' +
+    '<div class="color-list">' +
+    all.map(function(c){ return '<div class="color-row" onclick="editColor(\''+c.replace(/'/g,"\\'")+'\')"><div class="color-swatch" style="background:'+(CLIENT_COLORS_HEX[c]||DEFAULT_COLOR)+'"></div><div class="color-name">'+c+'</div><div class="color-count">'+(clientMap[c]||0)+'</div></div>'; }).join('') +
+    '</div>' +
+    '<div style="margin-top:16px;padding-top:12px;border-top:0.5px solid rgba(255,255,255,0.08)"><div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:8px">Unassigned</div><div class="color-row" style="cursor:default"><div class="color-swatch" style="background:'+DEFAULT_COLOR+'"></div><div class="color-name" style="opacity:0.5">No client</div><div class="color-count">'+PROPERTIES.filter(function(p){return !p.client;}).length+'</div></div></div>' +
+    '<button class="reset-btn" onclick="resetColors()">Reset All Colors</button>' +
+    '<button class="done-btn" onclick="closeSheet()">Done</button>';
   openSheet();
 }
 
-function editColor(client){
-  const curHex=CLIENT_COLORS_HEX[client]||DEFAULT_COLOR;
-  // Convert hsl to hex if needed (for display in color picker)
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="fs-title">${client}</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:16px">${PROPERTIES.filter(p=>p.client===client).length} properties</div>
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-      <div class="color-picker-wrap"><input type="color" id="colorPick" value="${curHex.startsWith('#')?curHex:'#636366'}" onchange="previewColor(this.value)"></div>
-      <input class="color-input" type="text" id="colorHex" value="${curHex}" placeholder="#FF0000 or hsl(…)" oninput="previewColor(this.value)">
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-      <div style="font-size:13px;color:rgba(255,255,255,0.4)">Preview:</div>
-      <div class="app-icon" id="colorPreview" style="background:${grad(client)};width:48px;height:48px;border-radius:12px;font-size:9px;">${PROPERTIES.find(p=>p.client===client)?.code||'test'}</div>
-    </div>
-    <button class="done-btn" onclick="saveColor('${client.replace(/'/g,"\\'")}')">Save Color</button>
-    <button class="btn-edit" style="margin-top:10px;background:transparent;border:none;width:100%;" onclick="openColorsSheet()">← Back</button>`;
+function editColor(client) {
+  var curHex = CLIENT_COLORS_HEX[client] || DEFAULT_COLOR;
+  var sample = PROPERTIES.find(function(p){return p.client===client;});
+  document.getElementById('sheetBody').innerHTML =
+    '<div class="fs-title">'+client+'</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:16px">'+PROPERTIES.filter(function(p){return p.client===client;}).length+' properties</div>' +
+    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">' +
+      '<div class="color-picker-wrap"><input type="color" id="colorPick" value="'+(curHex.startsWith('#')?curHex:'#636366')+'" onchange="previewColor(this.value)"></div>' +
+      '<input class="color-input" type="text" id="colorHex" value="'+curHex+'" placeholder="#FF0000" oninput="previewColor(this.value)">' +
+    '</div>' +
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;"><div style="font-size:13px;color:rgba(255,255,255,0.4)">Preview:</div><div class="app-icon" id="colorPreview" style="background:'+grad(client)+';width:48px;height:48px;border-radius:12px;font-size:9px">'+(sample?sample.code:'test')+'</div></div>' +
+    '<button class="done-btn" onclick="saveColor(\''+client.replace(/'/g,"\\'")+'\')">Save Color</button>' +
+    '<button class="btn-edit" style="margin-top:10px;background:transparent;border:none;width:100%" onclick="openColorsSheet()">← Back</button>';
   openSheet();
 }
 
-function previewColor(val){
-  const prev=document.getElementById('colorPreview');
-  if(prev){
-    // Build gradient inline
-    prev.style.background=`linear-gradient(145deg,rgba(0,0,0,0.25),transparent),${val}`;
-  }
-}
+function previewColor(val) { var el=document.getElementById('colorPreview'); if(el) el.style.background='linear-gradient(145deg,rgba(0,0,0,0.25),transparent),'+val; }
 
-function saveColor(client){
-  const val=document.getElementById('colorHex').value.trim();
+function saveColor(client) {
+  var val=document.getElementById('colorHex').value.trim();
   if(!val)return;
-  CLIENT_COLORS_HEX[client]=val;
-  saveColors();
-  render();
-  openColorsSheet(); // go back to list
+  CLIENT_COLORS_HEX[client]=val; saveColors(); render(); openColorsSheet();
 }
 
-function resetColors(){
+function resetColors() {
   if(!confirm('Reset all client colors to defaults?'))return;
-  CLIENT_COLORS_HEX={...DEFAULT_CLIENT_COLORS};
-  saveColors();render();openColorsSheet();
+  CLIENT_COLORS_HEX=JSON.parse(JSON.stringify(DEFAULT_CLIENT_COLORS)); saveColors(); render(); openColorsSheet();
 }
 
-// Boot: show local data immediately, then sync from cloud
+// ── 14. BOOT ─────────────────────────────────────────────────────────
 render();
 cloudLoad();
+</script>
 </body>
 </html>
